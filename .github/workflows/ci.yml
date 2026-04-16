@@ -1,6 +1,5 @@
 name: CI for Data Analysis Project
 
-
 on:
   push:
     branches: [ main, master ]
@@ -9,17 +8,18 @@ on:
 
 jobs:
   build-and-test:
-    [cite_start]runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
+    
     strategy:
       matrix:
         python-version: ["3.10", "3.11"]
 
     steps:
       - name: Checkout code
-        [cite_start]uses: actions/checkout@v4 
+        uses: actions/checkout@v4 
 
       - name: Set up Python ${{ matrix.python-version }}
-        [cite_start]uses: actions/setup-python@v5 
+        uses: actions/setup-python@v5 
         with:
           python-version: ${{ matrix.python-version }}
 
@@ -30,7 +30,7 @@ jobs:
           pip install pytest pylint 
 
       - name: Run Linter (Pylint)
-        [cite_start]run: pylint **/*.py --exit-zero 
+        run: pylint **/*.py --exit-zero 
 
       - name: Run Tests (Pytest)
-        [cite_start]run: pytest [cite: 39]
+        run: pytest
